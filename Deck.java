@@ -15,6 +15,7 @@ public class Deck
                 deck.add(new Card(rank, suit));
             }
         }
+        //System.out.println(deck.size());
     }
     
     public Card deal(){

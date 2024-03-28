@@ -14,6 +14,7 @@ public class Shoe
         for(int i = 0; i < numOfDecks; i++){
             addDeck(new Deck()); // adds cards
         }
+        System.out.println(shoe.size());
     }
     
     public Card dealCard(){
@@ -23,7 +24,7 @@ public class Shoe
     }
     
      private void addDeck(Deck deck){
-        for(int i = 0; i < deck.size(); i++){
+        while(deck.size() > 0){
             shoe.add(deck.deal());
         }
     }
