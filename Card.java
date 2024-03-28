@@ -6,20 +6,23 @@ import java.util.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Card  
+public class Card extends Actor  
 {
     private final Rank RANK;
     private final Suit SUIT;
-    private final GreenfootImage CARD_RANK_PNG;
-    private final GreenfootImage CARD_SUIT_PNG;
+    private final GreenfootImage CARDPNG;
+    private static final GreenfootImage BACK_OF_CARDPNG = 
+            new GreenfootImage("images//card_images//backOfCard.png");
+    private boolean backOfCard;
     
     public Card(Rank rank, Suit suit){
+        backOfCard = false; // Rethink later
         RANK = rank;
         SUIT = suit;
-        String rankFileName = "images//CardBeta//" + RANK.toString() + ".png";
-        String suitFileName = "images//CardBeta//" + SUIT.toString() + ".png";
-        CARD_RANK_PNG = new GreenfootImage(rankFileName);
-        CARD_SUIT_PNG = new GreenfootImage(suitFileName);
+        String rankFileName = "images//card_images//" + RANK.toString()
+        + "_of_" + SUIT.toString() +  ".png";
+        CARDPNG = new GreenfootImage(rankFileName);
+        this.setImage(CARDPNG);
     }
     
     public enum Rank{
@@ -37,99 +40,10 @@ public class Card
     public enum Suit{
         DIAMONDS, HEARTS, SPADES, CLUBS;
     public String toString(){ return name().toLowerCase();}
-    
     }
     
     public int getValue(){ return RANK.value;}
     public Rank getRank(){ return RANK;}
-    //Definitely needs to be changed later due to separate pngs
-    public GreenfootImage getImage(){return new GreenfootImage(CARD_SUIT_PNG);}
-    
+    public GreenfootImage getImage(){return new GreenfootImage(CARDPNG);}
     public String toString(){ return RANK + " of " + SUIT;}    
-    
-    
-    /*
-     * Disregard
-     * 
-     * public Card(String rank, String suit){
-        String rankFileName;
-        String suitFileName;
-        boolean validRank = true;
-        switch(rank.toLowerCase()){
-            case "one": 
-                rankFileName = rank.toLowerCase() + ".png";
-                RANK = Rank.valueOf(rank);
-                break;
-            case "two":
-                rankFileName = rank.toLowerCase() + ".png";
-                break;
-            case "three":
-                rankFileName = rank.toLowerCase() + ".png";
-                break;
-            case "four":
-                rankFileName = rank.toLowerCase() + ".png";
-                break;
-            case "five":
-                rankFileName = rank.toLowerCase() + ".png";
-                break;
-            case "six":
-                rankFileName = rank.toLowerCase() + ".png";
-                break;
-            case "seven":
-                rankFileName = rank.toLowerCase() + ".png";
-                break;
-            case "eight":
-                rankFileName = rank.toLowerCase() + ".png";
-                break;
-            case "nine":
-                rankFileName = rank.toLowerCase() + ".png";
-                break;
-            case "ten":
-                rankFileName = rank.toLowerCase() + ".png";
-                break;
-            case "jack":
-                rankFileName = rank.toLowerCase() + ".png";
-                break;
-            case "queen":
-                rankFileName = rank.toLowerCase() + ".png";
-                break;
-            case "king":
-                rankFileName = rank.toLowerCase() + ".png";
-                break;
-            case "ace":
-                rankFileName = rank.toLowerCase() + ".png";
-                break;
-            default:
-                rankFileName = "backOfCard" + ".png";
-                validRank = false;
-                break;
-        }
-        
-        if(validRank){
-            switch(suit.toLowerCase()){
-                case "spades":
-                    suitFileName = suit.toLowerCase() + ".png";
-                    break;
-                case "clubs":
-                    suitFileName = suit.toLowerCase() + ".png";
-                    break;
-                case "diamonds":
-                    suitFileName = suit.toLowerCase() + ".png";
-                    break;
-                case "hearts":
-                    suitFileName = suit.toLowerCase() + ".png";
-                    break;
-                default:
-                    rankFileName = "backOfCard" + ".png";
-                    suitFileName = null;
-                    validRank = false;
-                break;
-            }
-        }
-        else{
-            suitFileName = null;
-        }
-        
-    }
-     */
 }
