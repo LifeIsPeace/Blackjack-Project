@@ -3,8 +3,8 @@ import java.util.*;
 /**
  * Write a description of class Card here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Brejon Turner 
+ * @version 3.28.24
  */
 public class Card extends Actor  
 {
@@ -40,6 +40,18 @@ public class Card extends Actor
     public enum Suit{
         DIAMONDS, HEARTS, SPADES, CLUBS;
     public String toString(){ return name().toLowerCase();}
+    }
+    /**
+     * Changes the setImage of this card to BACK_OF_CARDPNG or CARDPNG depending on the value of backOfCARD
+     */
+    public void flipCard(){
+        backOfCard = !backOfCard;
+        if(backOfCard){
+            this.setImage(CARDPNG);
+        }
+        else{
+            this.setImage(BACK_OF_CARDPNG);
+        }
     }
     
     public int getValue(){ return RANK.value;}

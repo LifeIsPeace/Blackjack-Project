@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /**
  * Write a description of class Shoe here.
  * 
- * @author (your name) 
+ * @author Brejon T 
  * @version (a version number or a date)
  */
 public class Shoe  

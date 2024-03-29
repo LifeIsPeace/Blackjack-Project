@@ -4,7 +4,7 @@
  * @author Brejon T 
  * @version (a version number or a date)
  */
-public class RuleHand extends Hand 
+public class RuleHand extends Hand
 {
     private boolean splitPairs;
     private boolean doubleDown;
