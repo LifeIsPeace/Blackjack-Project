@@ -7,7 +7,22 @@ import java.util.ArrayList;
  */
 public class Dealer  
 {
-    private Hand dealerHand;
+    private RuleHand dealerHand;
+    private boolean willHit;
+    
+    public void startingHand(Shoe tableShoe){
+        hit(tableShoe);
+        hit(tableShoe);
+        dealerHand.getCard(0).flipCard();
+    }
+    
+    public void hit(Shoe tableShoe){
+        dealerHand.addCard(tableShoe.dealCard());
+    }
+    
+    public void revealHand(){
+        dealerHand.getCard(0).flipCard();
+    }
 }
 
 /*Notes 
