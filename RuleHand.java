@@ -17,6 +17,17 @@ public class RuleHand extends Hand
         }
         return false;
     }
+    
+    public int aceElevenValue(){
+        int value = 0;
+        for(Card card: hand){
+            value += card.getValue();
+        }
+        if(isSoft()){
+            value += 10;
+        }
+        return value;
+    }
     //Double check this message
     public boolean isSoft(){return (handValue() < 12) && hasAce();}
     

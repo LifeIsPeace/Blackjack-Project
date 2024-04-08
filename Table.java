@@ -31,13 +31,31 @@ public class Table extends Actor
             tableShoe = new Shoe(numOfDecks);
             tableShoe.shuffle();
         }
-        
+        dealer.clearHand();
         dealerBlackJack = false;
     }
+    
+    private void dealStartingHands(){
+        dealer.startingHand(tableShoe);
+        for(Player players: playersAtTable){
+            players.startingHand(tableShoe);
+        }
+        if(dealer.aceElevenValue() == MAX_VALUE){
+            dealerBlackJack = true;
+        }
+    }
+    
+    private void dealerTurn(){
+        
+    }
+    
+    
 }
 
 /*
  * The table will handle separate aces and making sure the player only hits once for
  * each ace
+ * 
+ * Make sure to add the betting amounts for each player. They bet before they see their hand
  * 
  */

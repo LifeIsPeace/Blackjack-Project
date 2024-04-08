@@ -11,10 +11,9 @@ public class Player
     private boolean separateHandAce;
     
     //Bets are placed before hand is dealt
-    public void startingHand(Shoe tableShoe, double betAmount){
+    public void startingHand(Shoe tableShoe){
         hit(tableShoe);
         hit(tableShoe);
-        playerHand.placeBet(betAmount);
     }
     
     public void hit(Shoe tableShoe){

@@ -23,6 +23,14 @@ public class Dealer
     public void revealHand(){
         dealerHand.getCard(0).flipCard();
     }
+    
+    public void clearHand(){
+        dealerHand.clearHand();
+    }
+    
+    public int aceElevenValue(){
+        return dealerHand.aceElevenValue();
+    }
 }
 
 /*Notes 
