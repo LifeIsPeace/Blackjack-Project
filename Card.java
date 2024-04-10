@@ -56,6 +56,7 @@ public class Card extends Actor
     
     public int getValue(){ return RANK.value;}
     public Rank getRank(){ return RANK;}
+    public boolean sideOfCard(){return backOfCard;}
     public GreenfootImage getImage(){return new GreenfootImage(CARDPNG);}
     public String toString(){ return RANK + " of " + SUIT;}    
 }

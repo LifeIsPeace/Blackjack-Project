@@ -16,7 +16,7 @@ public class Table extends Actor
     private int minBet;
     private int numOfDecks;
     private int minCardsForReshuffle;
-    private boolean dealerBlackJack;
+    private boolean dealerBlackjack;
     private static final int MAX_VALUE = 21;
     private static final int DEALER_WILL_HIT = 17;
     
@@ -32,7 +32,7 @@ public class Table extends Actor
             tableShoe.shuffle();
         }
         dealer.clearHand();
-        dealerBlackJack = false;
+        dealerBlackjack = false;
     }
     
     private void dealStartingHands(){
@@ -41,14 +41,52 @@ public class Table extends Actor
             players.startingHand(tableShoe);
         }
         if(dealer.aceElevenValue() == MAX_VALUE){
-            dealerBlackJack = true;
+            dealerBlackjack = true;
         }
     }
     
     private void dealerTurn(){
-        
+        while((dealer.isSoft() && dealer.aceElevenValue() == DEALER_WILL_HIT) || 
+        dealer.aceElevenValue() < DEALER_WILL_HIT){
+            dealer.addCard(dealCard());
+        }
     }
     
+    public Card dealCard(){
+        if(tableShoe.cardsRemaining() == 0){
+            tableShoe = new Shoe(numOfDecks);
+            tableShoe.shuffle();
+        }
+        return tableShoe.dealCard();
+    }
+    
+    public void addPlayer(Player player){
+        playersAtTable.add(player);
+    }
+    
+    public void removePlayer(Player player){
+        playersAtTable.remove(player);
+    }
+    
+    public int numPlayers(){
+        return playersAtTable.size();
+    }
+    
+    public double minimumBet(){
+        return minBet;
+    }
+    
+    public boolean dealerHasBlackjack(){
+        return dealerBlackjack;
+    }
+    
+    public Card dealerShownCard(){
+        return dealer.getCard(0);
+    }
+    
+    public RuleHand dealer(){
+        return dealer.getRuleHand();
+    }
     
 }
 

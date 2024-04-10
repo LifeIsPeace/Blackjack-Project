@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 /**
- * Write a description of class Dealer here.
+ * Truthfully this class could just be rulehand but I'd like to see
+ * you refactor code after coding literally every class
  * 
  * @author Brejon T 
  * @version 3.28.24
@@ -30,6 +31,22 @@ public class Dealer
     
     public int aceElevenValue(){
         return dealerHand.aceElevenValue();
+    }
+    
+    public boolean isSoft(){
+        return dealerHand.isSoft();
+    }
+    
+    public void addCard(Card card){
+        dealerHand.addCard(card);
+    }
+    
+    public Card getCard(int index){
+        return dealerHand.getCard(index);
+    }
+    
+    public RuleHand getRuleHand(){
+        return dealerHand;
     }
 }
 
