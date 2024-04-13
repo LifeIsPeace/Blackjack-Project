@@ -2,7 +2,7 @@
  * Write a description of class RuleHand here.
  * 
  * @author Brejon T 
- * @version (a version number or a date)
+ * @version 4.11.14
  */
 public class RuleHand extends Hand
 {

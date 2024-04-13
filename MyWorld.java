@@ -15,7 +15,9 @@ public class MyWorld extends World
      */
     public MyWorld()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(1920, 1080, 1); 
+        // 1920 by 1080 is too big
+        super(1320, 710, 1); 
+        Button test = new Button("Hello", 960, 540);
+        addObject(test, test.getX(), test.getY());
     }
 }
