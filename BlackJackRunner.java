@@ -16,7 +16,10 @@ public class BlackJackRunner extends World
     public BlackJackRunner()
     {    
         // 1920 by 1080 is too big
-        super(1260, 710, 1); 
+        super(1260, 710, 1);
+        GreenfootImage background = new GreenfootImage("images//background_images//bg_image.png");
+        background.scale(1260, 710);
+        this.setBackground(background);
         Button example = new Button("Hey lol", 250, 200);
         addObject(example, example.getX(), example.getY());
         

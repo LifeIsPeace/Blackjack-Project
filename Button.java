@@ -7,11 +7,6 @@ import greenfoot.*;
  * @version 4.13.24
  */
 
-/*
- * Buttons will NEVER move or turn therefore only certain methods will need to be overriden
- * A method (such as turnTowards) will not need to be overriden to update the instance x and y values
- * as it will never need to use those methods
- */
 public class Button extends Actor
 {
     // instance variables - replace the example below with your own
@@ -89,3 +84,9 @@ public class Button extends Actor
         }
     }
 }
+
+/*
+ * Buttons will NEVER move or turn therefore only certain methods will need to be overriden
+ * A method (such as turnTowards) will not need to be overriden to update the instance x and y values
+ * as it will never need to use those methods
+ */

@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class StartButton here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Brejon T
+ * @version 4.14.24
  */
 public class StartButton extends Button
 {
