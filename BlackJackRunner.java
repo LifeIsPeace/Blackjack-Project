@@ -1,27 +1,47 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * This will run all apsects of the blackjack game
+ * This class is used for inital setup and the display of graphics (Like cards, buttons, etc...)
  * 
  * @author Brejon Turner 
- * @version 4.13.24
+ * @version 4.16.24
  */
 public class BlackJackRunner extends World
 {
-
-    /**
-     * Will initialize and run the blackjack game
-     * 
-     */
-    public BlackJackRunner()
+    private static final int DEFAULT_STARTING_MONEY = 100;
+    private static final int DEFAULT_PLAYERS_PER_TABLE = 1;
+    private static final int DEFAULT_NUMBER_OF_DECKS = 6;
+    private static final int DEFAULT_MINIMUM_CARDS_BEFORE_SHUFFFLE = 78;
+    private static final int DEFAULT_MINIMUM_BET = 10;
+    private int startingMoney;
+    private int playersPerTable;
+    private int numberOfDecks;
+    private int minimumCardsBeforeShuffle;
+    private int minimumBet;
+    
+    public BlackJackRunner(int startingMoney, int playersPerTable, int numberOfDecks, int minimumCardsBeforeShuffle, int minimumBet)
     {    
         // 1920 by 1080 is too big
         super(1260, 710, 1);
         GreenfootImage background = new GreenfootImage("images//background_images//bg_image.png");
         background.scale(1260, 710);
         this.setBackground(background);
-        Button example = new Button("Hey lol", 250, 200);
-        addObject(example, example.getX(), example.getY());
+        
+        this.startingMoney = startingMoney;
+        this.playersPerTable = playersPerTable;
+        this.numberOfDecks = numberOfDecks;
+        this.minimumCardsBeforeShuffle = minimumCardsBeforeShuffle;
+        this.minimumBet = minimumBet;
+        setupInternals();
+        setupButtons();
+        
+        
+        
+    }
+    
+    private void setupInternals(){
+        Table table = new Table(numberOfDecks, playersPerTable, minimumCardsBeforeShuffle, minimumBet);
+        
         
     }
     
@@ -36,6 +56,22 @@ public class BlackJackRunner extends World
     public void addObject(Actor object, int x, int y){
         super.addObject(object, x, y);
         object.setLocation(x, y);
+    }
+    
+    private void setupButtons(){
+        HitButton hitButton = new HitButton();
+        StandButton standButton = new StandButton();
+        DoubleDownButton ddButton = new DoubleDownButton();
+        
+        
+        //This should pop up when user is able to. Do later
+        //SplitPairsButton spButton = new SplitPairsButton();
+        
+        addObject(hitButton, hitButton.getX(), hitButton.getY());
+        addObject(standButton, standButton.getX(), standButton.getY());
+        //addObject(spButton, spButton.getX(), spButton.getY());
+        addObject(ddButton, ddButton.getX(), ddButton.getY());
+        
     }
 }
 /*

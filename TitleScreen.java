@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Write a description of class TitleScreen here.
  * 
  * @author Brejon T 
- * @version 4.14.24
+ * @version 4.16.24
  */
 public class TitleScreen extends World
 {
@@ -17,7 +17,7 @@ public class TitleScreen extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1260, 710, 1);
-        StartButton startButton = new StartButton("Start", 200, 200);
+        StartButton startButton = new StartButton(200, 200);
         addObject(startButton, startButton.getX(), startButton.getY());
         
     }

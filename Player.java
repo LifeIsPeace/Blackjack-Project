@@ -6,7 +6,7 @@
  */
 public class Player  
 {
-    private RuleHand playerHand;
+    private RuleHand playerHand = new RuleHand();
     private RuleHand playerSplitHand;
     private boolean separateHandAce;
     
@@ -30,17 +30,16 @@ public class Player
     
     public void separateHand(){
         // test later
+        playerSplitHand = new RuleHand();
         if(playerHand.getCard(0).toString() == playerHand.getCard(1).toString()){
             playerSplitHand.placeBet(playerHand.getBet());
             playerSplitHand.addCard(playerHand.getCard(1));
             playerHand.removeCard();
             
             if(playerHand.getCard(0).getValue() == 1){
+                //Sees if both cards are aces
                 separateHandAce = true;
             }
-        }
-        else{
-            return;
         }
     }
     
@@ -53,6 +52,6 @@ public class Player
     
     public void reset(){
         playerHand.clearHand();
-        playerSplitHand.clearHand();
+        playerSplitHand = null;
     }
 }

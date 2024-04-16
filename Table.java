@@ -11,7 +11,7 @@ public class Table extends Actor
 {
     // For now only 1 player and 1 dealer
     private ArrayList<Player> playersAtTable = new ArrayList<>();
-    private Dealer dealer;
+    private Dealer dealer = new Dealer();
     private Shoe tableShoe;
     private int minBet;
     private int numOfDecks;
@@ -20,22 +20,55 @@ public class Table extends Actor
     private static final int MAX_VALUE = 21;
     private static final int DEALER_WILL_HIT = 17;
     
-    public Table(int numOfDecks, int minCardsForReshuffle, int minBet){
+    /**
+     * Sets up the table for play
+     */
+    public Table(int numOfDecks, int numOfPlayers, int minCardsForReshuffle, int minBet){
         this.numOfDecks = numOfDecks; 
         this.minCardsForReshuffle = minCardsForReshuffle;
         this.minBet = minBet;
+        tableShoe = new Shoe(numOfDecks);
+        dealer.startingHand(tableShoe);
+        for(int i = 0; i < numOfPlayers; i++){
+            playersAtTable.add(new Player());
+            playersAtTable.get(i).startingHand(tableShoe);
+        }
+        setup();
     }
     
-    private void setup(){
+    public void act(){
+        /*
+         * Cards are deleted when dealt
+         * Pray this works if not it's probably this that's breaking the game
+         */
+        if(tableShoe.cardsRemaining() < this.getMinNumOfCardsForReshuffle()){
+            tableShoe = new Shoe(4);
+        }
+        
+        /*
+         * If the player quits the game will end
+         */
+        if(playersAtTable.size() < 1){
+            System.err.print("Minimum Players Required: 1");
+            this.getWorld().stopped();
+        }
+        
+        //Continue with conditions later
+    }
+    
+    public void setup(){
         if(tableShoe.cardsRemaining() <= minCardsForReshuffle){
             tableShoe = new Shoe(numOfDecks);
             tableShoe.shuffle();
+        }
+        for(Player players: playersAtTable){
+            players.reset();
         }
         dealer.clearHand();
         dealerBlackjack = false;
     }
     
-    private void dealStartingHands(){
+    public void dealStartingHands(){
         dealer.startingHand(tableShoe);
         for(Player players: playersAtTable){
             players.startingHand(tableShoe);
@@ -45,7 +78,7 @@ public class Table extends Actor
         }
     }
     
-    private void dealerTurn(){
+    public void dealerTurn(){
         while((dealer.isSoft() && dealer.aceElevenValue() == DEALER_WILL_HIT) || 
         dealer.aceElevenValue() < DEALER_WILL_HIT){
             dealer.addCard(dealCard());
@@ -58,6 +91,14 @@ public class Table extends Actor
             tableShoe.shuffle();
         }
         return tableShoe.dealCard();
+    }
+    
+    /**
+     * Used for the act method within the class
+     * @return MinCardsForReshuffle
+     */
+    private int getMinNumOfCardsForReshuffle(){
+        return minCardsForReshuffle;
     }
     
     public void addPlayer(Player player){

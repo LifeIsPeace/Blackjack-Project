@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class Dealer  
 {
-    private RuleHand dealerHand;
+    private RuleHand dealerHand = new RuleHand();
     private boolean willHit;
     
     public void startingHand(Shoe tableShoe){

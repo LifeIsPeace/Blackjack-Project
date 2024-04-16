@@ -7,20 +7,20 @@ import greenfoot.*;
  * @version 4.13.24
  */
 
-public class Button extends Actor
+public abstract class Button extends Actor
 {
     // instance variables - replace the example below with your own
     private GreenfootImage message;
     private int x;
     private int y;
-    private static final int DEFAULT_FONT_SIZE = 100;
+    private static final int DEFAULT_FONT_SIZE = 50;
 
     /**
      * Constructor for objects of class Button
      */
     public Button(String message, int x, int y)
     {
-        this.message = new GreenfootImage(message, DEFAULT_FONT_SIZE, Color.RED, Color.GREEN);
+        this.message = new GreenfootImage(message, DEFAULT_FONT_SIZE, Color.WHITE, new Color(78,72,250));
         setImage(this.message);
         this.x = x;
         this.y = y;
@@ -78,12 +78,9 @@ public class Button extends Actor
         this.y = y;
     }
     
-    public void act(){
-        if(Greenfoot.mouseClicked(this)){
-            System.out.println("100");
-        }
-    }
+    public abstract void act();
 }
+    
 
 /*
  * Buttons will NEVER move or turn therefore only certain methods will need to be overriden
