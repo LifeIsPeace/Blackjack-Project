@@ -1,8 +1,9 @@
 import java.util.ArrayList;
 import greenfoot.*;
 /**
- * The rules of the table such as busting (pause), blackjack, payout, etc...
- * Tomorrow add Player variables and finish up
+ * This class runs the game
+ * Yes I am a fool and didn't realize a world could have an act method
+ * It's too late, this will run the game
  * 
  * @author Brejon T 
  * @version 3.28.24
@@ -12,6 +13,7 @@ public class Table extends Actor
     // For now only 1 player and 1 dealer
     private ArrayList<Player> playersAtTable = new ArrayList<>();
     private Dealer dealer = new Dealer();
+    private World world;
     private Shoe tableShoe;
     private int minBet;
     private int numOfDecks;
@@ -19,21 +21,26 @@ public class Table extends Actor
     private boolean dealerBlackjack;
     private static final int MAX_VALUE = 21;
     private static final int DEALER_WILL_HIT = 17;
+    private static final int[] DEALER_FIRST_CARD_XY = {0, 0};
+    private static final int[] DEALER_SECOND_CARD_XY = {50, 50};
+    private static final int[] PLAYER_FIRST_CARD_XY = {100, 100};
+    private static final int[] PLAYER_SECOND_CARD_XY = {200, 200};
     
     /**
      * Sets up the table for play
      */
-    public Table(int numOfDecks, int numOfPlayers, int minCardsForReshuffle, int minBet){
+    public Table(int numOfDecks, int numOfPlayers, int minCardsForReshuffle, int minBet, World world){
         this.numOfDecks = numOfDecks; 
         this.minCardsForReshuffle = minCardsForReshuffle;
         this.minBet = minBet;
+        this.world = world;
         tableShoe = new Shoe(numOfDecks);
-        dealer.startingHand(tableShoe);
-        for(int i = 0; i < numOfPlayers; i++){
-            playersAtTable.add(new Player());
-            playersAtTable.get(i).startingHand(tableShoe);
+        for(int i = 0 ; i < numOfPlayers; i ++){
+            addPlayer(new Player());
         }
+        
         setup();
+        dealStartingHands();
     }
     
     public void act(){
@@ -50,7 +57,7 @@ public class Table extends Actor
          */
         if(playersAtTable.size() < 1){
             System.err.print("Minimum Players Required: 1");
-            this.getWorld().stopped();
+            world.stopped();
         }
         
         //Continue with conditions later
@@ -70,13 +77,22 @@ public class Table extends Actor
     
     public void dealStartingHands(){
         dealer.startingHand(tableShoe);
+        world.addObject(dealer.getCard(0), DEALER_FIRST_CARD_XY[0],DEALER_FIRST_CARD_XY[1]);
+        world.addObject(dealer.getCard(1), DEALER_SECOND_CARD_XY[0], DEALER_SECOND_CARD_XY[1]);
+        
         for(Player players: playersAtTable){
             players.startingHand(tableShoe);
         }
         if(dealer.aceElevenValue() == MAX_VALUE){
             dealerBlackjack = true;
         }
+        for(Player player: playersAtTable){
+            world.addObject(player.getCard(0),PLAYER_FIRST_CARD_XY[0], PLAYER_FIRST_CARD_XY[1]);
+            world.addObject(player.getCard(1), PLAYER_SECOND_CARD_XY[0], PLAYER_SECOND_CARD_XY[1]);
+        }
+        
     }
+    
     
     public void dealerTurn(){
         while((dealer.isSoft() && dealer.aceElevenValue() == DEALER_WILL_HIT) || 

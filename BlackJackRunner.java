@@ -18,6 +18,7 @@ public class BlackJackRunner extends World
     private int numberOfDecks;
     private int minimumCardsBeforeShuffle;
     private int minimumBet;
+    private Table table; // Table is technically not in world
     
     public BlackJackRunner(int startingMoney, int playersPerTable, int numberOfDecks, int minimumCardsBeforeShuffle, int minimumBet)
     {    
@@ -32,18 +33,13 @@ public class BlackJackRunner extends World
         this.numberOfDecks = numberOfDecks;
         this.minimumCardsBeforeShuffle = minimumCardsBeforeShuffle;
         this.minimumBet = minimumBet;
-        setupInternals();
+        table = new Table(numberOfDecks, playersPerTable, minimumCardsBeforeShuffle, minimumBet, this);
         setupButtons();
         
         
         
     }
     
-    private void setupInternals(){
-        Table table = new Table(numberOfDecks, playersPerTable, minimumCardsBeforeShuffle, minimumBet);
-        
-        
-    }
     
     /**
      * This method @Overrides the addObject method in the World class
@@ -73,14 +69,6 @@ public class BlackJackRunner extends World
         addObject(ddButton, ddButton.getX(), ddButton.getY());
         
     }
+    
+    
 }
-/*
-* Used in BlackJackRunner Constructor
-* Test for clicking a button. Works for the first two constructors of Button.
-* Third hasn't been tested
-* 
-* StartButton startButton = new StartButton("Testing", 500, 500);
-* addObject(startButton, startButton.getX(), startButton.getY());
-* System.out.println(startButton.getX());
-* 
-*/

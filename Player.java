@@ -16,6 +16,10 @@ public class Player
         hit(tableShoe);
     }
     
+    public Card getCard(int x){
+        return playerHand.getCard(x);
+    }
+    
     public void hit(Shoe tableShoe){
         playerHand.addCard(tableShoe.dealCard());
     }
@@ -43,6 +47,9 @@ public class Player
         }
     }
     
+    /*
+     * Shouldn't be a necessary method
+     */
     public boolean playableHand(){ // In the future check if this needs to be called with every method
         if(playerHand.getSize() > 1){
             return true;

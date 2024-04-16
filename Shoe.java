@@ -14,7 +14,7 @@ public class Shoe
         for(int i = 0; i < numOfDecks; i++){
             addDeck(new Deck()); // adds cards
         }
-        System.out.println(shoe.size());
+        shuffle(); //Always a random deck of cards
     }
     
     public Card dealCard(){
