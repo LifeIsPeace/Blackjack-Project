@@ -14,6 +14,9 @@ public class Player
     public void startingHand(Shoe tableShoe){
         hit(tableShoe);
         hit(tableShoe);
+        for(int i = 0; i < 2; i++){
+            scaleCard(playerHand.getCard(i));
+        }
     }
     
     public Card getCard(int x){
@@ -22,6 +25,10 @@ public class Player
     
     public void hit(Shoe tableShoe){
         playerHand.addCard(tableShoe.dealCard());
+    }
+    
+    public void scaleCard(Card card){
+        card.getImage().scale(92,128);
     }
     
     public void pshHit(Shoe tableShoe){

@@ -10,7 +10,8 @@ public class Card extends Actor
 {
     private final Rank RANK;
     private final Suit SUIT;
-    private final GreenfootImage CARDPNG;
+    private GreenfootImage cardPng;
+    private final String rankFileName;
     private static final GreenfootImage BACK_OF_CARDPNG = 
             new GreenfootImage("images//card_images//backOfCard.png");
     private boolean backOfCard;
@@ -19,10 +20,11 @@ public class Card extends Actor
         backOfCard = false; // Rethink later
         RANK = rank;
         SUIT = suit;
-        String rankFileName = "images//card_images//" + RANK.toString()
+        rankFileName = "images//card_images//" + RANK.toString()
         + "_of_" + SUIT.toString() +  ".png";
-        CARDPNG = new GreenfootImage(rankFileName);
-        this.setImage(CARDPNG);
+        //Java garbage collector will collect this if the card is ever flipped
+        cardPng = new GreenfootImage(rankFileName);
+        this.setImage(cardPng);
     }
     
     public enum Rank{
@@ -45,18 +47,30 @@ public class Card extends Actor
      * Changes the setImage of this card to BACK_OF_CARDPNG or CARDPNG depending on the value of backOfCARD
      */
     public void flipCard(){
-        backOfCard = !backOfCard;
         if(backOfCard){
-            this.setImage(CARDPNG);
+            cardPng = new GreenfootImage(rankFileName);
+            this.setImage(cardPng);
+            backOfCard = !backOfCard;
         }
         else{
-            this.setImage(BACK_OF_CARDPNG);
+            cardPng = BACK_OF_CARDPNG;
+            this.setImage(cardPng);
+            backOfCard = !backOfCard;
         }
     }
     
     public int getValue(){ return RANK.value;}
     public Rank getRank(){ return RANK;}
     public boolean sideOfCard(){return backOfCard;}
-    public GreenfootImage getImage(){return new GreenfootImage(CARDPNG);}
+    /** 
+     * If there were multiple players and they had a card that was flipped, this would not work as the dealer class
+     * scales this image to be more visible to the irl player. For this project, there is only 1 player that will
+     * always see their cards.
+     */
+    public GreenfootImage getImage(){
+        if(backOfCard){
+            return BACK_OF_CARDPNG;
+        }
+        return cardPng;}
     public String toString(){ return RANK + " of " + SUIT;}    
 }

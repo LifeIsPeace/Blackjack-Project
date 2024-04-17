@@ -15,10 +15,18 @@ public class Dealer
         hit(tableShoe);
         hit(tableShoe);
         dealerHand.getCard(0).flipCard();
+        for(int i = 0; i < 2; i++){
+        scaleCard(dealerHand.getCard(i));
+    }
     }
     
+    //Make sure to scale this card too
     public void hit(Shoe tableShoe){
         dealerHand.addCard(tableShoe.dealCard());
+    }
+    
+    public void scaleCard(Card card){
+        card.getImage().scale(138,192);
     }
     
     public void revealHand(){
