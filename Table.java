@@ -21,11 +21,10 @@ public class Table extends Actor
     private boolean dealerBlackjack;
     private static final int MAX_VALUE = 21;
     private static final int DEALER_WILL_HIT = 17;
-    private static final int[] DEALER_FIRST_CARD_XY = {0, 0};
-    private static final int[] DEALER_SECOND_CARD_XY = {50, 50};
-    private static final int[] PLAYER_FIRST_CARD_XY = {100, 100};
-    private static final int[] PLAYER_SECOND_CARD_XY = {200, 200};
-    
+    private static final int[] DEALER_FIRST_CARD_XY = {138, 156};
+    private static final int[] DEALER_SECOND_CARD_XY = {225, 156};
+    private static final int[] PLAYER_FIRST_CARD_XY = {289, 541};
+    private static final int[] PLAYER_SECOND_CARD_XY = {346, 541};
     /**
      * Sets up the table for play
      */

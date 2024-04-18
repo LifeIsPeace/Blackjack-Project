@@ -10,13 +10,16 @@ public class StandButton extends Button
 {
     static final int DEFAULT_X = 99;
     static final int DEFAULT_Y = 547;
+    private boolean hasButtonBeenHit;
     
     public StandButton(int x, int y, int z){
         super("STAND", x, y, z);
+        hasButtonBeenHit = false;
     }
     
     public StandButton(int x, int y){
         super("STAND", x, y);
+        hasButtonBeenHit = false;
     }
     
     public StandButton(){
@@ -25,6 +28,8 @@ public class StandButton extends Button
     
     public void act()
     {
-        // Add your action code here.
+        if(Greenfoot.mouseClicked(this)){
+            hasButtonBeenHit = true;
+        }
     }
 }

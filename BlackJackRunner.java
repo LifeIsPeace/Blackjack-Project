@@ -40,6 +40,9 @@ public class BlackJackRunner extends World
         
     }
     
+    public void act(){
+        
+    }
     
     /**
      * This method @Overrides the addObject method in the World class

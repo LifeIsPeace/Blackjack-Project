@@ -4,7 +4,7 @@ import java.util.ArrayList;
  * Write a description of class Shoe here.
  * 
  * @author Brejon T 
- * @version (a version number or a date)
+ * @version 4.17.24
  */
 public class Shoe  
 {
