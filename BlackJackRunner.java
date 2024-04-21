@@ -35,13 +35,17 @@ public class BlackJackRunner extends World
         this.minimumBet = minimumBet;
         table = new Table(numberOfDecks, playersPerTable, minimumCardsBeforeShuffle, minimumBet, this);
         setupButtons();
-        
-        
-        
+        Player player = table.getPlayer(0);
+        Dealer dealer = table.getDealer();
+        if ((player.getHandValue() + (player.getAceCount() * 11) == 21) || (player.getHandValue() + player.getAceCount() == 21)) {
+            table.getWorld().showText("WIN", 630, 630);
+        }
+        else if((dealer.getHandValue() + (dealer.getAceCount() * 11) == 21) && !(dealer.getHandValue() + dealer.getAceCount() == 21)) {
+            table.getWorld().showText("GAMEOVER", 630, 630);
+        }
     }
     
     public void act(){
-        
     }
     
     /**
@@ -58,9 +62,9 @@ public class BlackJackRunner extends World
     }
     
     private void setupButtons(){
-        HitButton hitButton = new HitButton();
-        StandButton standButton = new StandButton();
-        DoubleDownButton ddButton = new DoubleDownButton();
+        HitButton hitButton = new HitButton(table, table.getPlayer(0), table.getShoe());
+        StandButton standButton = new StandButton(table, table.getPlayer(0), table.getShoe());
+        DoubleDownButton ddButton = new DoubleDownButton(table, table.getPlayer(0), table.getShoe());
         
         
         //This should pop up when user is able to. Do later
@@ -68,10 +72,7 @@ public class BlackJackRunner extends World
         
         addObject(hitButton, hitButton.getX(), hitButton.getY());
         addObject(standButton, standButton.getX(), standButton.getY());
-        //addObject(spButton, spButton.getX(), spButton.getY());
         addObject(ddButton, ddButton.getX(), ddButton.getY());
         
     }
-    
-    
 }

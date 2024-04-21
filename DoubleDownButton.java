@@ -11,12 +11,21 @@ public class DoubleDownButton extends Button
     static final int DEFAULT_X = 188;
     static final int DEFAULT_Y = 675;
     
-    public DoubleDownButton(int x, int y, int z){
-        super("DOUBLE DOWN", x, y, z);
-    }
+    private int amountOfCards;
+    private Player player;
+    private Shoe shoe;
+    private Table table;
     
     public DoubleDownButton(int x, int y){
         super("DOUBLE DOWN", x, y);
+    }
+    
+    public DoubleDownButton(Table table, Player player, Shoe shoe){
+        this(DEFAULT_X, DEFAULT_Y);
+        this.table = table;
+        this.player = player;
+        this.shoe = shoe;
+        amountOfCards = 2;
     }
     
     public DoubleDownButton(){
@@ -25,6 +34,12 @@ public class DoubleDownButton extends Button
     
     public void act()
     {
-        // Add your action code here.
+       if(Greenfoot.mouseClicked(this)){
+           int cards = table.getAmountOfCards();
+           player.hit(shoe);
+           table.hit(cards);
+           cards++;
+           table.setAmountOfCards(cards);
+        }
     }
 }

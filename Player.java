@@ -23,6 +23,13 @@ public class Player
         return playerHand.getCard(x);
     }
     
+    public int getHandValue(){
+        return playerHand.handValue();
+    }
+    public int getAceCount(){
+        return playerHand.aceCount();
+    }
+    
     public void hit(Shoe tableShoe){
         playerHand.addCard(tableShoe.dealCard());
     }

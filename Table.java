@@ -19,21 +19,27 @@ public class Table extends Actor
     private int numOfDecks;
     private int minCardsForReshuffle;
     private boolean dealerBlackjack;
+    private static final int spacing = 57;
+    private static final int numOfPlayerCards = 1;
     private static final int MAX_VALUE = 21;
     private static final int DEALER_WILL_HIT = 17;
-    private static final int[] DEALER_FIRST_CARD_XY = {138, 156};
-    private static final int[] DEALER_SECOND_CARD_XY = {225, 156};
-    private static final int[] PLAYER_FIRST_CARD_XY = {289, 541};
-    private static final int[] PLAYER_SECOND_CARD_XY = {346, 541};
+    private static int[] DEALER_CARD_XY = {138, 156};
+    private static int[] PLAYER_CARD_XY = {289, 541};
+    private int amountOfDealerCards;
+    private int amountOfCards;
     /**
      * Sets up the table for play
      */
     public Table(int numOfDecks, int numOfPlayers, int minCardsForReshuffle, int minBet, World world){
+        amountOfCards = 2;
+        amountOfDealerCards = 2;
         this.numOfDecks = numOfDecks; 
         this.minCardsForReshuffle = minCardsForReshuffle;
         this.minBet = minBet;
         this.world = world;
         tableShoe = new Shoe(numOfDecks);
+        DEALER_CARD_XY[0] = 138;
+        PLAYER_CARD_XY[0] = 289;
         for(int i = 0 ; i < numOfPlayers; i ++){
             addPlayer(new Player());
         }
@@ -76,8 +82,9 @@ public class Table extends Actor
     
     public void dealStartingHands(){
         dealer.startingHand(tableShoe);
-        world.addObject(dealer.getCard(0), DEALER_FIRST_CARD_XY[0],DEALER_FIRST_CARD_XY[1]);
-        world.addObject(dealer.getCard(1), DEALER_SECOND_CARD_XY[0], DEALER_SECOND_CARD_XY[1]);
+        world.addObject(dealer.getCard(0), DEALER_CARD_XY[0],DEALER_CARD_XY[1]);
+        DEALER_CARD_XY[0] += spacing;
+        world.addObject(dealer.getCard(1), DEALER_CARD_XY[0], DEALER_CARD_XY[1]);
         
         for(Player players: playersAtTable){
             players.startingHand(tableShoe);
@@ -86,8 +93,9 @@ public class Table extends Actor
             dealerBlackjack = true;
         }
         for(Player player: playersAtTable){
-            world.addObject(player.getCard(0),PLAYER_FIRST_CARD_XY[0], PLAYER_FIRST_CARD_XY[1]);
-            world.addObject(player.getCard(1), PLAYER_SECOND_CARD_XY[0], PLAYER_SECOND_CARD_XY[1]);
+            world.addObject(player.getCard(0),PLAYER_CARD_XY[0], PLAYER_CARD_XY[1]);
+            PLAYER_CARD_XY[0] += spacing;
+            world.addObject(player.getCard(1), PLAYER_CARD_XY[0], PLAYER_CARD_XY[1]);
         }
         
     }
@@ -108,6 +116,17 @@ public class Table extends Actor
         return tableShoe.dealCard();
     }
     
+    // This hit Method adds card to Table, called by hitButton
+    public void hit(int index) {
+        PLAYER_CARD_XY[0] += spacing;
+        world.addObject(getPlayer(0).getCard(index), PLAYER_CARD_XY[0], PLAYER_CARD_XY[1]);
+    }
+    
+    public void hitDealer(int index) {
+        DEALER_CARD_XY[0] += spacing;
+        world.addObject(dealer.getCard(index), DEALER_CARD_XY[0], DEALER_CARD_XY[1]);
+    }
+    
     /**
      * Used for the act method within the class
      * @return MinCardsForReshuffle
@@ -122,6 +141,17 @@ public class Table extends Actor
     
     public void removePlayer(Player player){
         playersAtTable.remove(player);
+    }
+    
+    public Player getPlayer(int index) {
+        return playersAtTable.get(index);
+    }
+    public Dealer getDealer() {
+        return dealer;
+    }
+    
+    public Shoe getShoe() {
+        return tableShoe;
     }
     
     public int numPlayers(){
@@ -143,7 +173,21 @@ public class Table extends Actor
     public RuleHand dealer(){
         return dealer.getRuleHand();
     }
-    
+    public int getAmountOfCards() {
+        return amountOfCards;
+    }
+    public int getAmountOfDealerCards() {
+        return amountOfDealerCards;
+    }
+    public void setAmountOfCards(int amountOfCards) {
+        this.amountOfCards = amountOfCards;
+    }
+    public void setAmountOfDealerCards(int amountOfDealerCards) {
+        this.amountOfDealerCards = amountOfDealerCards;
+    }
+    public World getWorld() {
+        return world;
+    }
 }
 
 /*

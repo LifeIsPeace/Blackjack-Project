@@ -56,6 +56,12 @@ public class Dealer
     public RuleHand getRuleHand(){
         return dealerHand;
     }
+    public int getHandValue(){
+        return dealerHand.handValue();
+    }
+    public int getAceCount(){
+        return dealerHand.aceCount();
+    }
 }
 
 /*Notes 
