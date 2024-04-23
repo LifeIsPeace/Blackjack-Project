@@ -47,12 +47,6 @@ public class BlackJackRunner extends World
         firstHand = true;
         nextTurn = false;
         timer = -1;
-        if ((player.getHandValue() + (player.getAceCount() * 11) == 21) || (player.getHandValue() + player.getAceCount() == 21)) {
-            table.getWorld().showText("WIN", 630, 630);
-        }
-        else if((dealer.getHandValue() + (dealer.getAceCount() * 11) == 21) && !(dealer.getHandValue() + dealer.getAceCount() == 21)) {
-            table.getWorld().showText("GAMEOVER", 630, 630);
-        }
     }
     
     public void act(){

@@ -37,7 +37,6 @@ public class DoubleDownButton extends Button
     public void act()
     {
        if(Greenfoot.mouseClicked(this) && !bjr.isBetting() && bjr.getStartingMoney() >= bjr.getBetAmount() * 2){
-           bjr.setStartingMoney(bjr.getStartingMoney() - bjr.getBetAmount());
            bjr.setBetAmount(bjr.getBetAmount() * 2);
            int cards = table.getAmountOfCards();
            player.hit(shoe);
@@ -53,11 +52,12 @@ public class DoubleDownButton extends Button
            
            if (!(dealer.getHandValue() + (dealer.getAceCount() * 11) > 21) && !(dealer.getHandValue() + dealer.getAceCount() > 21) && player.getHandValue() < dealer.getHandValue()) {
                bjr.setBetting(true);
+               bjr.setStartingMoney(bjr.getStartingMoney() - (bjr.getBetAmount() / 2));
                bjr.setBetAmount(0);
            }
            else if (!(dealer.getHandValue() + (dealer.getAceCount() * 11) > 21) && !(dealer.getHandValue() + dealer.getAceCount() > 21) && player.getHandValue() == dealer.getHandValue()) {
                bjr.setBetting(true);
-               bjr.setStartingMoney(bjr.getStartingMoney() + bjr.getBetAmount());
+               bjr.setStartingMoney(bjr.getStartingMoney() + (bjr.getBetAmount() / 2));
                bjr.setBetAmount(0);
            }
            else {
