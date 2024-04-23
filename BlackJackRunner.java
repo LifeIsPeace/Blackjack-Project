@@ -78,6 +78,11 @@ public class BlackJackRunner extends World
             table.createNextTurnCards();
             nextTurn = false;
         }
+        
+        if (startingMoney == 0 && betAmount == 0) {
+            timer = -2;
+            table.getWorld().showText("GAME OVER", 630, 630);
+        }
     }
     
     /**

@@ -127,15 +127,20 @@ public class Table extends Actor
     public void deleteOldCards() {
         for (int i = 0; i < getPlayer(0).getCardCount(); i++) {
             world.removeObject(getPlayer(0).getCard(i));
+            //This is a bandaid solution because for some reason the x values are off if you reset them
+            if (i != 1) {
+                PLAYER_CARD_XY[0] -= spacing;
+            }
         }
         for (int i = 0; i < dealer.getCardCount(); i++) {
             world.removeObject(dealer.getCard(i));
+            if (i != 1) {
+                DEALER_CARD_XY[0] -= spacing;
+            }
         }
     }
     
-    public void createNextTurnCards() {        
-        PLAYER_CARD_XY[0] = 138;
-        DEALER_CARD_XY[0] = 289;
+    public void createNextTurnCards() {
         dealer.startingHand(tableShoe);
         world.addObject(dealer.getCard(0), DEALER_CARD_XY[0],DEALER_CARD_XY[1]);
         DEALER_CARD_XY[0] += spacing;
