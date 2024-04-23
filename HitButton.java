@@ -14,16 +14,18 @@ public class HitButton extends Button
     private Player player;
     private Shoe shoe;
     private Table table;
+    private BlackJackRunner bjr;
     
     public HitButton(int x, int y){
         super("HIT", x, y);
     }
     
-    public HitButton(Table table, Player player, Shoe shoe){
+    public HitButton(Table table, BlackJackRunner bjr){
         this(DEFAULT_X, DEFAULT_Y);
         this.table = table;
-        this.player = player;
-        this.shoe = shoe;
+        player = table.getPlayer(0);
+        shoe = table.getShoe();
+        this.bjr = bjr;
     }
     
     public HitButton(){
@@ -32,15 +34,15 @@ public class HitButton extends Button
     
     public void act()
     {
-       if(Greenfoot.mouseClicked(this)){
+       if(Greenfoot.mouseClicked(this) && !bjr.isBetting()){
            int cards = table.getAmountOfCards();
            player.hit(shoe);
            table.hit(cards);
-           cards++;
-           table.setAmountOfCards(cards);
-           
            if ((player.getHandValue() + (player.getAceCount() * 11) > 21) && (player.getHandValue() + player.getAceCount() > 21)) {
-               table.getWorld().showText("GAMEOVER", 630, 630);
+               bjr.setBetting(true);
+               bjr.setBetAmount(0);
+               table.getDealer().revealHand();
+               bjr.setTimer(0);
            }
         }
     }

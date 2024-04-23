@@ -25,14 +25,10 @@ public class Table extends Actor
     private static final int DEALER_WILL_HIT = 17;
     private static int[] DEALER_CARD_XY = {138, 156};
     private static int[] PLAYER_CARD_XY = {289, 541};
-    private int amountOfDealerCards;
-    private int amountOfCards;
     /**
      * Sets up the table for play
      */
     public Table(int numOfDecks, int numOfPlayers, int minCardsForReshuffle, int minBet, World world){
-        amountOfCards = 2;
-        amountOfDealerCards = 2;
         this.numOfDecks = numOfDecks; 
         this.minCardsForReshuffle = minCardsForReshuffle;
         this.minBet = minBet;
@@ -45,7 +41,6 @@ public class Table extends Actor
         }
         
         setup();
-        dealStartingHands();
     }
     
     public void act(){
@@ -120,11 +115,40 @@ public class Table extends Actor
     public void hit(int index) {
         PLAYER_CARD_XY[0] += spacing;
         world.addObject(getPlayer(0).getCard(index), PLAYER_CARD_XY[0], PLAYER_CARD_XY[1]);
+        getPlayer(0).scaleCard(getPlayer(0).getCard(index));
     }
     
     public void hitDealer(int index) {
         DEALER_CARD_XY[0] += spacing;
         world.addObject(dealer.getCard(index), DEALER_CARD_XY[0], DEALER_CARD_XY[1]);
+        dealer.scaleCard(dealer.getCard(index));
+    }
+    
+    public void deleteOldCards() {
+        for (int i = 0; i < getPlayer(0).getCardCount(); i++) {
+            world.removeObject(getPlayer(0).getCard(i));
+        }
+        for (int i = 0; i < dealer.getCardCount(); i++) {
+            world.removeObject(dealer.getCard(i));
+        }
+    }
+    
+    public void createNextTurnCards() {        
+        PLAYER_CARD_XY[0] = 138;
+        DEALER_CARD_XY[0] = 289;
+        dealer.startingHand(tableShoe);
+        world.addObject(dealer.getCard(0), DEALER_CARD_XY[0],DEALER_CARD_XY[1]);
+        DEALER_CARD_XY[0] += spacing;
+        world.addObject(dealer.getCard(1), DEALER_CARD_XY[0], DEALER_CARD_XY[1]);
+        
+        for(Player players: playersAtTable){
+            players.startingHand(tableShoe);
+        }
+        for(Player player: playersAtTable){
+            world.addObject(player.getCard(0),PLAYER_CARD_XY[0], PLAYER_CARD_XY[1]);
+            PLAYER_CARD_XY[0] += spacing;
+            world.addObject(player.getCard(1), PLAYER_CARD_XY[0], PLAYER_CARD_XY[1]);
+        }
     }
     
     /**
@@ -174,16 +198,10 @@ public class Table extends Actor
         return dealer.getRuleHand();
     }
     public int getAmountOfCards() {
-        return amountOfCards;
+        return getPlayer(0).getCardCount();
     }
     public int getAmountOfDealerCards() {
-        return amountOfDealerCards;
-    }
-    public void setAmountOfCards(int amountOfCards) {
-        this.amountOfCards = amountOfCards;
-    }
-    public void setAmountOfDealerCards(int amountOfDealerCards) {
-        this.amountOfDealerCards = amountOfDealerCards;
+        return dealer.getCardCount();
     }
     public World getWorld() {
         return world;
