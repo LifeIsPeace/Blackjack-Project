@@ -1,28 +1,31 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class TitleScreen here.
+ * Write a description of class TutorialScreen here.
  * 
  * @author Brejon T 
  * @version 4.16.24
  */
-public class TitleScreen extends World
+public class TutorialScreen extends World
 {
+
     /**
-     * Constructor for objects of class TitleScreen.
+     * Constructor for objects of class TutorialScreen.
      * 
      */
-    private static GreenfootImage title;
-    public TitleScreen()
+    public TutorialScreen()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1260, 710, 1);
-        StartButton startButton = new StartButton(630, 500);
-        TutorialButton tutorialButton = new TutorialButton(630, 600);
-        title = new GreenfootImage("images//title.png");
-        getBackground().drawImage(title, 85, -75);
+        
+        GreenfootImage background = new GreenfootImage("images//background_images//bg_image.png");
+        background.scale(1260, 710);
+        this.setBackground(background);
+        
+        StartButton startButton = new StartButton(630, 200);
         addObject(startButton, startButton.getX(), startButton.getY());
-        addObject(tutorialButton, tutorialButton.getX(), tutorialButton.getY());
+        showText("In blackjack, the goal is to beat the dealer.\n Your objective is to get as close to 21 with your cards without going over. \n" + 
+        "You win if the value of your hand is higher than the dealer's without exceeding 21.\n The Dealer wins if they go over your amount without exceeding 21.", 630, 400);
 
     }
     

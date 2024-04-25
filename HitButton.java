@@ -8,15 +8,24 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class HitButton extends Button
 {
-    static final int DEFAULT_X = 64;
-    static final int DEFAULT_Y = 610;
+    private static final int DEFAULT_X = 64;
+    private static final int DEFAULT_Y = 610;
     
-    public HitButton(int x, int y, int z){
-        super("HIT", x, y, z);
-    }
+    private Player player;
+    private Shoe shoe;
+    private Table table;
+    private BlackJackRunner bjr;
     
     public HitButton(int x, int y){
         super("HIT", x, y);
+    }
+    
+    public HitButton(Table table, BlackJackRunner bjr){
+        this(DEFAULT_X, DEFAULT_Y);
+        this.table = table;
+        player = table.getPlayer(0);
+        shoe = table.getShoe();
+        this.bjr = bjr;
     }
     
     public HitButton(){
@@ -25,8 +34,16 @@ public class HitButton extends Button
     
     public void act()
     {
-       if(Greenfoot.mouseClicked(this)){
-            
+       if(Greenfoot.mouseClicked(this) && !bjr.isBetting()){
+           int cards = table.getAmountOfCards();
+           player.hit(shoe);
+           table.hit(cards);
+           if ((player.getHandValue() + (player.getAceCount() * 11) > 21) && (player.getHandValue() + player.getAceCount() > 21)) {
+               bjr.setBetting(true);
+               bjr.setBetAmount(0);
+               table.getDealer().revealHand();
+               bjr.setTimer(0);
+           }
         }
     }
 }

@@ -22,6 +22,16 @@ public class Player
     public Card getCard(int x){
         return playerHand.getCard(x);
     }
+    public int getCardCount() {
+        return playerHand.getSize();
+    }
+    
+    public int getHandValue(){
+        return playerHand.handValue();
+    }
+    public int getAceCount(){
+        return playerHand.aceCount();
+    }
     
     public void hit(Shoe tableShoe){
         playerHand.addCard(tableShoe.dealCard());
@@ -37,6 +47,10 @@ public class Player
     
     public void setBet(double amount){
         playerHand.placeBet(amount);
+    }
+    
+    public void clearHand(){
+        playerHand.clearHand();
     }
     
     public void separateHand(){

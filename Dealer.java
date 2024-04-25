@@ -31,6 +31,10 @@ public class Dealer
     
     public void revealHand(){
         dealerHand.getCard(0).flipCard();
+        scaleCard(dealerHand.getCard(0));
+    }
+    public int getCardCount() {
+        return dealerHand.getSize();
     }
     
     public void clearHand(){
@@ -55,6 +59,12 @@ public class Dealer
     
     public RuleHand getRuleHand(){
         return dealerHand;
+    }
+    public int getHandValue(){
+        return dealerHand.handValue();
+    }
+    public int getAceCount(){
+        return dealerHand.aceCount();
     }
 }
 

@@ -39,7 +39,20 @@ public class Hand
     
     public int handValue(){
         int value = 0;
-        for(Card card: hand){ value += card.getValue();}
+        for(Card card: hand){
+            if (card.getValue() != 1) {
+                value += card.getValue();
+            }
+        }
         return value;
+    }
+    public int aceCount(){
+        int ace = 0;
+        for(Card card: hand){ 
+            if (card.getValue() == 1) {
+                ace++;
+            }
+        }
+        return ace;
     }
 }
