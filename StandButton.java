@@ -8,15 +8,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class StandButton extends Button
 {
-    static final int DEFAULT_X = 99;
-    static final int DEFAULT_Y = 547;
+    static final int DEFAULT_X = 120;
+    static final int DEFAULT_Y = 450;
     private Player player;
     private Shoe shoe;
     private Table table;
     private BlackJackRunner bjr;
     
     public StandButton(int x, int y){
-        super("STAND", x, y);
+        super(new GreenfootImage("images//stand3.png"), x, y);
     }
     
     public StandButton(Table table, BlackJackRunner bjr){
@@ -33,6 +33,7 @@ public class StandButton extends Button
     
     public void act()
     {
+        animate("stand");
        if(Greenfoot.mouseClicked(this) && !bjr.isBetting()){
            table.getDealer().revealHand();
            Dealer dealer = table.getDealer();

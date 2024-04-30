@@ -17,10 +17,11 @@ public class StartButton extends Button
     }
     
     public StartButton(int x, int y){
-        super("START", x, y);
+        super(new GreenfootImage("images//start3.png"), x, y);
     }
     
     public void act(){
+        animate("start");
         if(Greenfoot.mouseClicked(this)){
             this.getWorld().stopped();
             Greenfoot.setWorld(new BlackJackRunner(500, 1, 4, 30, 25));

@@ -17,10 +17,11 @@ public class TutorialButton extends Button
     }
 
     public TutorialButton(int x, int y){
-        super("TUTORIAL", x, y);
+        super(new GreenfootImage("images//tutorial3.png"), x, y);
     }
 
     public void act(){
+        animate("tutorial");
         if(Greenfoot.mouseClicked(this)){
             this.getWorld().stopped();
             Greenfoot.setWorld(new TutorialScreen());
