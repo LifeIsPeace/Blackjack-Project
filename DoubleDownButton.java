@@ -8,8 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class DoubleDownButton extends Button
 {
-    static final int DEFAULT_X = 188;
-    static final int DEFAULT_Y = 675;
+    static final int DEFAULT_X = 120;
+    static final int DEFAULT_Y = 650;
     
     private int amountOfCards;
     private Player player;
@@ -18,7 +18,7 @@ public class DoubleDownButton extends Button
     private BlackJackRunner bjr;
     
     public DoubleDownButton(int x, int y){
-        super("DOUBLE DOWN", x, y);
+        super(new GreenfootImage("images//doubleDown3.png"), x, y);
     }
     
     public DoubleDownButton(Table table, BlackJackRunner bjr){
@@ -36,6 +36,8 @@ public class DoubleDownButton extends Button
     
     public void act()
     {
+        animate("doubleDown");
+        
        if(Greenfoot.mouseClicked(this) && !bjr.isBetting() && bjr.getStartingMoney() >= bjr.getBetAmount() * 2){
            bjr.setBetAmount(bjr.getBetAmount() * 2);
            int cards = table.getAmountOfCards();

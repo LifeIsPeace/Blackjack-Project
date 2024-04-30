@@ -38,8 +38,9 @@ public abstract class Button extends Actor
      * @param x   The x coordinate of the button
      * @param y   The y coordinate of the button
      */
-    public Button(GreenfootImage picture, int x, int y){
-        this.message = picture;
+    public Button(GreenfootImage img, int x, int y){
+        img.scale(200,100);
+        this.message = img;
         setImage(this.message);
         this.x = x;
         this.y = y;
@@ -76,6 +77,28 @@ public abstract class Button extends Actor
     
     public void changeY(int y){
         this.y = y;
+    }
+    
+    public GreenfootImage scale(GreenfootImage img, int x, int y){
+        img.scale(x,y);
+        return img;
+    }
+    
+    public void animate(String btnType){
+        if(Greenfoot.mousePressed(this)){
+            setImage(scale(new GreenfootImage("images//"+btnType+"1.png"),200,100));
+            Greenfoot.delay(20);
+        } 
+        if(Greenfoot.mouseClicked(this)){
+            setImage(scale(new GreenfootImage("images//"+btnType+"2.png"),210,110));
+            Greenfoot.delay(10);
+            //if (this instanceof StartButton){ Greenfoot.setWorld( new BlackJackRunner()); }
+        }
+        if(Greenfoot.mouseMoved(this)){
+            setImage(scale(new GreenfootImage("images//"+btnType+"2.png"),210,110));
+        } else if(Greenfoot.mouseMoved(null) && !Greenfoot.mouseMoved(this)){
+            setImage(scale(new GreenfootImage("images//"+btnType+"3.png"),200,100));
+        }
     }
     
     public abstract void act();
