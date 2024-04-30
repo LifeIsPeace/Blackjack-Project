@@ -50,7 +50,7 @@ public class BlackJackRunner extends World
     }
     
     public void act(){
-        table.getWorld().showText("Balence: " + startingMoney, 800, 100);
+        table.getWorld().showText("Balance: " + startingMoney, 800, 100);
         table.getWorld().showText("Bet: " + betAmount, 800, 125);
         
         if (timer > -1 && timer < 100) {
@@ -97,15 +97,14 @@ public class BlackJackRunner extends World
         StandButton standButton = new StandButton(table, this);
         DoubleDownButton ddButton = new DoubleDownButton(table, this);
         TextInput textInput = new TextInput(minimumBet + "", 0, 0, this);
-        
+        AchievementsButton achievementsButton = new AchievementsButton(this);
         //This should pop up when user is able to. Do later
         //SplitPairsButton spButton = new SplitPairsButton();
-        
+        addObject(achievementsButton, 120,345);
         addObject(hitButton, hitButton.getX(), hitButton.getY());
         addObject(standButton, standButton.getX(), standButton.getY());
         addObject(ddButton, ddButton.getX(), ddButton.getY());
         addObject(textInput, 800, 500);
-        
     }
     
     public int getStartingMoney() {

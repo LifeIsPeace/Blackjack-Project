@@ -11,6 +11,7 @@ Welcome to our Blackjack game! This project offers a simple and entertaining imp
 - **Customization**: Adjust bet amounts to suit your preferred risk level.
 - **Theme**: Imaginative exploration of the vast expanse beyond Earth's atmosphere through retroed galactic backdrops and card textures.
 - **Inventory**: Ability to wager personal assets when currency drops too low. 
+- **Achievements**: Ability to earn achievements throughout the game, displaying unlocked/locked icons.
 
 ### How to Play
 
