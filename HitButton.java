@@ -34,7 +34,7 @@ public class HitButton extends Button
     
     public void act()
     {
-        animate("hit");
+       animate("hit");
        if(Greenfoot.mouseClicked(this) && !bjr.isBetting()){
            int cards = table.getAmountOfCards();
            player.hit(shoe);
