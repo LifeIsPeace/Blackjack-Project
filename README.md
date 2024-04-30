@@ -16,7 +16,7 @@ Welcome to our Blackjack game! This project offers a simple and entertaining imp
 
 1. **Starting**: Each player is dealt two cards, with the dealer receiving one face-up and one face-down card.
 2. **Objective**: The goal is to reach a total card value of 21 or closer to it than the dealer without exceeding 21.
-3. **Gameplay**: Players take turns deciding whether to "hit" (receive another card) or "stand" (keep their current hand).
+3. **Gameplay**: Players take turns deciding whether to "hit" (receive another card), "double down" (double their bet before receiving another card), or "stand" (keep their current hand).
 4. **Dealer's Turn**: After all players have completed their turns, the dealer reveals their face-down card and hits until their hand value is 17 or higher.
 5. **Outcome**: If a player's total card value exceeds 21, they bust and lose the round. Otherwise, the player with the closest hand value to 21 wins.
 
