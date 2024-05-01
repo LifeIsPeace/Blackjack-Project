@@ -27,7 +27,7 @@ public class AchievementsButton extends Button
 
     public void animate(String btnType){
         if(Greenfoot.mousePressed(this)){
-            setImage(scale(new GreenfootImage("images//"+btnType+"1.png"),180,100));
+            setImage(scale(new GreenfootImage("images//"+btnType+"1.png"),170,100));
         } 
         if(Greenfoot.mouseClicked(this)){
             setImage(scale(new GreenfootImage("images//"+btnType+"2.png"),190,110));
@@ -36,7 +36,7 @@ public class AchievementsButton extends Button
         if(Greenfoot.mouseMoved(this)){
             setImage(scale(new GreenfootImage("images//"+btnType+"2.png"),190,110));
         } else if(Greenfoot.mouseMoved(null) && !Greenfoot.mouseMoved(this)){
-            setImage(scale(new GreenfootImage("images//"+btnType+"3.png"),180,100));
+            setImage(scale(new GreenfootImage("images//"+btnType+"3.png"),170,100));
         }
     }
 
