@@ -24,6 +24,7 @@ public class BlackJackRunner extends World
     private boolean nextTurn;
     private int timer;
     private Table table; // Table is technically not in world
+    private Colateral colateral;
     
     public BlackJackRunner(int startingMoney, int playersPerTable, int numberOfDecks, int minimumCardsBeforeShuffle, int minimumBet)
     {    
@@ -47,6 +48,7 @@ public class BlackJackRunner extends World
         firstHand = true;
         nextTurn = false;
         timer = -1;
+        colateral = new Colateral(this);
     }
     
     public void act(){
@@ -74,8 +76,13 @@ public class BlackJackRunner extends World
         }
         
         if (startingMoney == 0 && betAmount == 0) {
-            timer = -2;
-            table.getWorld().showText("GAME OVER", 630, 630);
+            table.deleteOldCards();
+            table.getPlayer(0).clearHand();
+            table.getDealer().clearHand();
+            timer = -1;
+            betting = true;
+            nextTurn = true;
+            Greenfoot.setWorld(colateral);
         }
     }
     
