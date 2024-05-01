@@ -39,7 +39,7 @@ To run the Blackjack game locally, follow these steps:
 
 ### Contributors
 
-- Saniyah Bullock
+- Saniyah L. Bullock
 - Haley Crawford
 - Derrick Galioto
 - Brejon Turner
