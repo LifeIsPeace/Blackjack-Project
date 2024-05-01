@@ -16,10 +16,7 @@ public class YikesButton extends Button
     }public YikesButton(){
         this(DEFAULT_X, DEFAULT_Y);
     }
-    public void animate(String btnType){
-        
-    }
     public void act()
-    {
+    {animate("yikes");
     }
 }

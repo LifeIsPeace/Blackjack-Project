@@ -16,10 +16,7 @@ public class TwinsButton extends Button
     }public TwinsButton(){
         this(DEFAULT_X, DEFAULT_Y);
     }
-    public void animate(String btnType){
-        
-    }
     public void act()
-    {
+    {animate("twins");
     }
 }

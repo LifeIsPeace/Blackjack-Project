@@ -17,10 +17,8 @@ public class BrokeButton extends Button
 
     public BrokeButton(int x, int y){
         super(new GreenfootImage("images//broke1.png"), x, y);
-    }public void animate(String btnType){
-        
     }
     public void act()
-    {
+    {animate("broke");
     }
 }

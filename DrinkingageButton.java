@@ -18,10 +18,7 @@ public class DrinkingageButton extends Button
     public DrinkingageButton(int x, int y){
         super(new GreenfootImage("images//drinkingage1.png"), x, y);
     }
-    public void animate(String btnType){
-        
-    }
     public void act()
-    {
+    {animate("drinkingage");
     }
 }

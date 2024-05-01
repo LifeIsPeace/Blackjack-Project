@@ -18,10 +18,7 @@ public class DrumsButton extends Button
     public DrumsButton(int x, int y){
         super(new GreenfootImage("images//drums1.png"), x, y);
     }
-    public void animate(String btnType){
-        
-    }
     public void act()
-    {
+    {animate("drums");
     }
 }

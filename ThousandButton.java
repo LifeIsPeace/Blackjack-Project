@@ -16,10 +16,7 @@ public class ThousandButton extends Button
     }public ThousandButton(){
         this(DEFAULT_X, DEFAULT_Y);
     }
-    public void animate(String btnType){
-        
-    }
     public void act()
-    {
+    {animate("thousand");
     }
 }
